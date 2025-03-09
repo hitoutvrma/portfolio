@@ -1,0 +1,54 @@
+import React from 'react'
+import {animate, hover, motion} from 'framer-motion'
+function Front() {
+  return (
+    <div className='sm:h-screen md:h-screen'>
+    <div className="sm:flex">
+      <div className='hero sm:p-5 sm:text-[3vw] text-[8vw]  sm:w-[53vw]'>
+      <logo className='text-4xl sm:text-5xl font-semibold font-[serif]'>hitoutvrma</logo>
+        <p className='mt-28 leading-none text-[#8c8c8c]'><span className='text-white font-semibold'>Hitesh Verma</span> is an award-winning multidisciplinary digital web developer based in India</p>
+
+        <div className='text-xl pt-4'>
+          <p className='text-[#8c8c8c]'>creative Director and founder at </p>
+          <p className='font-semibold'>bitCheat</p>
+        </div>
+        <div className='flex sm:text-[2vh] sm:pb-0 pb-12 text-[1.8vh]  sm:pt-23 pt-28 flex-col sm:gap-3 gap-1'>
+          <p className='text-[#8c8c8c] pb-4 text-[1.6vh]  sm:text-[1.8vh]'>CONNECT</p>
+          <motion.div 
+        className="w-[90%] relative font-bold text-white text-2xl cursor-pointer"
+        whileHover="hover"
+      >
+        <p>Twitter/X</p>
+        
+        {/* Static Gray Line */}
+        <div className="absolute left-0 bottom-0 w-full h-[2px] bg-blue-500 opacity-50"></div>
+        
+        {/* Animated Line */}
+        <motion.div
+          className="absolute left-0 bottom-0 h-[2px] bg-green-400"
+          variants={{
+            hover: { width: "100%" },
+            initial: { width: "0%" }
+          }}
+          initial="initial"
+          transition={{ duration: 2, ease: "easeInOut" }}
+        />
+      </motion.div>
+          <motion.div initial={{ scaleX: 0.2 }} whileHover= {{scaleX: 1.1}} transition={{duration:1}} style={{originX:0}} className='w-[90%]  h-[0.1vh] bg-[#8c8c8c]'></motion.div>
+          <div className='w-[90%] font-bold '>Instagram</div>
+          
+          <div className='w-[90%]  h-[0.1vh] bg-[#8c8c8c]'></div>
+          <div className='w-[90%] font-bold'>Linkedin</div>
+          <div className='w-[90%] h-[0.1vh] bg-[#8c8c8c]'></div>
+          <div className='w-[90%] font-bold'>Email</div>
+          <div className='w-[90%] h-[0.1vh] bg-[#8c8c8c]'></div>
+        </div>
+        </div>
+        <div style={{ backgroundImage: "url('/user.jpg')" }} className='bg-cover sm:bg-[center_top_60%] bg-[center_top_80%] w-[95%] h-[50vh] sm:w-[43vw] sm:h-[92vh]  bg-[#3a3a3a] rounded-md'>          
+        </div>
+      </div>
+        </div>
+  )
+}
+
+export default Front

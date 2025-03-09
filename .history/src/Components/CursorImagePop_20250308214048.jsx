@@ -1,0 +1,77 @@
+import { useState, useEffect } from "react";
+
+const CursorImagePop = () => {
+    const images = ["/1.jpg", "/r.jpg", "/3.jpg", "/4.jpg", "/5.jpg", "/6.jpg"]; // Image list
+    const [imageIndex, setImageIndex] = useState(0);
+    const [positions, setPositions] = useState([]);
+    const minDistance = 110; // Minimum distance to trigger next image
+
+    useEffect(() => {
+        const handleMouseMove = (e) => {
+            if (positions.length > 0) {
+                const lastPos = positions[positions.length - 1];
+                const distance = Math.sqrt((e.clientX - lastPos.x) ** 2 + (e.clientY - lastPos.y) ** 2);
+                if (distance < minDistance) return;
+            }
+
+            const newImage = {
+                id: Date.now(),
+                src: images[imageIndex],
+                x: e.clientX,
+                y: e.clientY
+            };
+
+            setPositions((prev) => [...prev, newImage]);
+
+            setImageIndex((prev) => (prev + 1) % images.length);
+
+            setTimeout(() => {
+                setPositions((prev) => prev.filter((img) => img.id !== newImage.id));
+            }, 3000); // Remove after 3 sec
+        };
+
+        window.addEventListener("mousemove", handleMouseMove);
+        return () => window.removeEventListener("mousemove", handleMouseMove);
+    }, [imageIndex, positions]);
+
+    return (
+        
+        <div className="flex h-screen overflow-hidden  justify-center items-center relative">
+        <div className="opacity-50   ">
+            {/* Floating Images */}
+            {positions.map((img) => (
+                <img
+                key={img.id}
+                src={img.src}
+                alt=""
+                className="absolute pointer-events-none"
+                style={{
+                    width: "180px",
+                    height: "auto",
+                    transform: "translate(-50%, -50%)",
+                    left: img.x,
+                    top: img.y,
+                    opacity: 1,
+                    transition: "opacity 1s ease-out"
+                }}
+                />
+            ))}
+
+            {/* Center Div - Fully Visible */}
+            
+        </div>
+        <div  className='h-screen z-50 opacity-1000 sm:p-5 flex flex-col justify-center items-center'>
+        <div className=" flex items-center justify-center  flex-col gap-4" >
+      <p className="sm:text-5xl text-3xl text-white opacity-150 text-center font-bold">
+        Interested In Working Together?
+        </p>
+      <button
+        className="px-2 py-1 text-lg font-bold  bg-white text-black hover:bg-pink-200 cursor-pointer transition-colors duration-300 rounded-md ">Email Me</button>
+        </div>
+
+    </div>
+            </div>
+    );
+};
+
+export default CursorImagePop;

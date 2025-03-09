@@ -1,0 +1,17 @@
+
+
+function WorkTogether() {
+  return (
+    <div className='h-screen sm:p-5 flex flex-col justify-center items-center'>
+        <div className="flex items-center justify-center flex flex-col gap-4" >
+      <p className="sm:text-5xl text-3xl text-center font-bold">
+        Interested In Working Together?
+        </p>
+      <button className="px-2 py-1 text-lg font-bold  bg-white text-black hover:bg-pink-200 cursor-pointer transition-colors duration-300 rounded-md ">Email Me</button>
+        </div>
+
+    </div>
+  )
+}
+
+export default WorkTogether
